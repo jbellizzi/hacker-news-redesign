@@ -1,25 +1,33 @@
-import { Item, Story } from "../../redux/types";
+import { Button, Spinner } from "@blueprintjs/core";
+import { useGetTopStories } from "../../api";
 
 import styles from "./body.module.css";
 import { StoryComponent } from "./story";
+import { StorySkeleton } from "./story-skeleton";
 
-interface BodyProps {
-  items: Item[];
-}
+export const Body = () => {
+  const { stories, fetchMore, isLoading, isFetching } = useGetTopStories();
 
-export const Body = ({ items }: BodyProps) => {
+  const handleShowMore = () => {
+    fetchMore();
+  };
+
   return (
     <div className={styles.bodyContainer}>
-      <ol>
-        {items
-          .filter((item): item is Story => item.type === "story")
-          .map((story, i) => (
-            <li key={story.id}>
-              <StoryComponent story={story} rank={i + 1} />
+      {isLoading ? (
+        <StorySkeleton />
+      ) : (
+        <ol>
+          {stories.map((story) => (
+            <li key={story.id} className={styles.listItem}>
+              <StoryComponent story={story} />
             </li>
           ))}
-      </ol>
-      <button className={styles.showMoreButton}>show more</button>
+        </ol>
+      )}
+      <Button className={styles.showMoreButton} onClick={handleShowMore} disabled={stories.length === 0 || isFetching}>
+        {stories.length === 0 || isFetching ? <Spinner size={15} /> : <>show more</>}
+      </Button>
     </div>
   );
 };
