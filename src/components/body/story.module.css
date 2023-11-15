@@ -23,10 +23,18 @@
   outline: none;
 }
 
+:global(.theme-dark) .title {
+  color: white;
+}
+
 .linkContainer {
   color: rgba(0, 0, 0, 0.5);
   font-size: 0.625rem;
   text-decoration: none;
+}
+
+:global(.theme-dark) .linkContainer {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .detailLine {
@@ -34,6 +42,10 @@
   align-items: center;
   color: rgba(0, 0, 0, 0.5);
   font-size: 0.625rem;
+}
+
+:global(.theme-dark) .detailLine {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .saveContainer {
@@ -52,6 +64,10 @@
 
 .emptyStarIcon {
   content: url(../../assets/star-empty.svg);
+}
+
+:global(.theme-dark) .emptyStarIcon {
+  content: url(../../assets/star-empty-dark-mode.svg);
 }
 
 .saveContainer:hover .emptyStarIcon {

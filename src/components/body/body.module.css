@@ -8,6 +8,10 @@
   font-size: 1.125rem;
 }
 
+:global(.theme-dark) .bodyContainer .listItem::marker {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 :global(.bp5-button:not([class*="bp5-intent-"])).showMoreButton {
   margin-left: 2.25rem;
   padding: 0.5rem 0.875rem;
