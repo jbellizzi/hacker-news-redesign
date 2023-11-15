@@ -2,6 +2,7 @@
   "name": "hacker-news-redesign",
   "private": true,
   "version": "0.0.0",
+  "homepage": "/hacker-news-redesign/#",
   "type": "module",
   "scripts": {
     "dev": "vite",

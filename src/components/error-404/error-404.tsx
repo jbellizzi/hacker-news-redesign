@@ -9,7 +9,8 @@ export const Error404 = () => {
       title="404 - Page Not Found"
       description={
         <div>
-          The page you are looking for does not exist. Please <a href={"/"}>click here</a> to go back to the home page.
+          The page you are looking for does not exist. Please <a href={"/hacker-news-redesign"}>click here</a> to go
+          back to the home page.
         </div>
       }
     />

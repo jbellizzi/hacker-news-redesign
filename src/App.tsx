@@ -1,11 +1,4 @@
-import {
-  Navigate,
-  RouterProvider,
-  Outlet,
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom";
+import { Navigate, RouterProvider, Outlet, createHashRouter, createRoutesFromElements, Route } from "react-router-dom";
 import "./App.css";
 import { Error404, Footer, Header, LatestStories, StarredStories, useFilterController } from "./components";
 import { useAppDispatch, useAppSelector } from "./redux/store";
@@ -18,7 +11,7 @@ function App() {
     dispatch(initializeFromStorage());
   }, [dispatch]);
 
-  const router = createBrowserRouter(
+  const router = createHashRouter(
     createRoutesFromElements(
       <Route path="/" element={<AppRoot />} errorElement={<Error404 />}>
         <Route index element={<Navigate to="latest" replace />} />
