@@ -1,9 +1,24 @@
-.filter {
-  text-decoration: none;
+.filter,
+.filter:hover {
   color: black;
+  text-decoration: none;
+  outline: none;
 }
 
-.filterSelected {
+.filter:hover {
+  color: var(--primary-color);
+}
+
+.filter:focus {
+  outline: none;
+}
+
+.filterSelected,
+.filterSelected:hover {
   color: var(--primary-color);
   font-weight: 800;
+}
+
+.divider {
+  margin: 0 0.5rem;
 }

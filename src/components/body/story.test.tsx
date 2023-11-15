@@ -71,7 +71,9 @@ describe("StoryComponent", () => {
   const timestamp = dayjs(new Date()).subtract(4, "hours").unix();
 
   test("renders story", () => {
-    render(<StoryComponent story={{ ...mockStory, time: timestamp }} />);
+    render(
+      <StoryComponent story={{ ...mockStory, time: timestamp, starred: false }} toggleStarredStory={() => undefined} />
+    );
 
     const title = screen.getByText("The Small Website Discoverability Crisis");
     expect(title).toBeTruthy();
@@ -85,7 +87,9 @@ describe("StoryComponent", () => {
   });
 
   test("renders job", () => {
-    render(<StoryComponent story={{ ...mockJob, time: timestamp }} />);
+    render(
+      <StoryComponent story={{ ...mockJob, time: timestamp, starred: false }} toggleStarredStory={() => undefined} />
+    );
 
     const title = screen.getByText("Mux (YC W16) Is Hiring a Senior Distributed Systems Engineer");
     expect(title).toBeTruthy();
@@ -101,7 +105,9 @@ describe("StoryComponent", () => {
   });
 
   test("renders poll", () => {
-    render(<StoryComponent story={{ ...mockPoll, time: timestamp }} />);
+    render(
+      <StoryComponent story={{ ...mockPoll, time: timestamp, starred: false }} toggleStarredStory={() => undefined} />
+    );
 
     const title = screen.getByText("Poll: What's Your Favorite Programming Language?");
     expect(title).toBeTruthy();

@@ -1,1 +1,1 @@
-export * from "./use-get-latest-stories";
+export * from "./use-get-stories";

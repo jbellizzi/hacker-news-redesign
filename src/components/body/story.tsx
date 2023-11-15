@@ -1,20 +1,25 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-import starEmptyIcon from "../../assets/star-empty.svg";
 import { FrontPageItem } from "../../redux/types";
 import { getDomainFromUrl } from "../../utilities";
 
 import styles from "./story.module.css";
+import classNames from "classnames";
 
 dayjs.extend(relativeTime);
 
+type FrontPageItemStarred = FrontPageItem & {
+  starred: boolean;
+};
+
 interface StoryProps {
-  story: FrontPageItem;
+  story: FrontPageItemStarred;
+  toggleStarredStory: (id: number) => void;
 }
 
-export const StoryComponent = ({ story }: StoryProps) => {
-  const { id, type, title, time } = story;
+export const StoryComponent = ({ story, toggleStarredStory }: StoryProps) => {
+  const { id, type, title, time, starred } = story;
   const isStory = type === "story";
   const isJob = type === "job";
   const isPoll = type === "poll";
@@ -22,6 +27,10 @@ export const StoryComponent = ({ story }: StoryProps) => {
   const date = time ? new Date(time * 1000) : new Date();
 
   const fromNow = dayjs(date).fromNow();
+
+  const handleStarStory = () => {
+    toggleStarredStory(id);
+  };
 
   return (
     <div className={styles.story}>
@@ -33,14 +42,26 @@ export const StoryComponent = ({ story }: StoryProps) => {
           >
             {title}
           </a>
+          {/* Show domain for story or job item */}
           {(isStory || isJob) && <span className={styles.linkContainer}>({getDomainFromUrl(story.url || "")})</span>}
         </>
       </div>
       <div className={styles.detailLine}>
-        {(isStory || isPoll) && <>{story.score} points</>} {(isStory || isPoll) && <>by {story.by}</>} {fromNow} |&nbsp;
+        {/* points and author for story or poll item */}
+        {(isStory || isPoll) && (
+          <>
+            {story.score} points by {story.by}
+          </>
+        )}{" "}
+        {fromNow} |&nbsp;
+        {/* comments for story or poll item */}
         {(isStory || isPoll) && <>{story.descendants} comments |&nbsp;</>}
-        <div className={styles.saveContainer}>
-          <img src={starEmptyIcon} alt="save-empty" /> &nbsp;save
+        <div className={styles.saveContainer} onClick={handleStarStory}>
+          <img
+            className={classNames({ [styles.emptyStarIcon]: !starred, [styles.filledStarIcon]: starred })}
+            alt="save-empty"
+          />{" "}
+          &nbsp;<span>{starred ? "saved" : "save"}</span>
         </div>
       </div>
     </div>
