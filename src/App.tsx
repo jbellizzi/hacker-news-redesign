@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { Error404, Footer, Header, LatestStories, StarredStories, useFilterController } from "./components";
-import { useAppDispatch } from "./redux/store";
+import { useAppDispatch, useAppSelector } from "./redux/store";
 import { useEffect } from "react";
 import { initializeFromStorage } from "./redux/slices";
 
@@ -33,9 +33,10 @@ function App() {
 
 const AppRoot = () => {
   const filterController = useFilterController();
+  const themeMode = useAppSelector((state) => state.theme.mode);
 
   return (
-    <div>
+    <div className={`theme-${themeMode}`}>
       <Header {...filterController} />
       <Outlet />
       <Footer {...filterController} />

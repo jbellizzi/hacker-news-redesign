@@ -5,6 +5,10 @@
   outline: none;
 }
 
+:global(.theme-dark) .filter {
+  color: white;
+}
+
 .filter:hover {
   color: var(--primary-color);
 }
@@ -14,6 +18,7 @@
 }
 
 .filterSelected,
+:global(.theme-dark) .filterSelected,
 .filterSelected:hover {
   color: var(--primary-color);
   font-weight: 800;

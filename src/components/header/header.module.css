@@ -25,19 +25,6 @@
   margin-right: 2.25rem;
 }
 
-.nightModeIconContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 2px;
-  cursor: pointer;
-}
-.nightModeIconContainer:hover {
-  background-color: #d1d5db;
-}
-
-.nightModeIcon {
-  width: 1rem;
+.themeButton:focus {
+  outline: none;
 }
