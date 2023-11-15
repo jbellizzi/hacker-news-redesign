@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Item } from "../types";
+import { FrontPageItem, Item } from "../types";
 
 export const hnApi = createApi({
   reducerPath: "hnApi",
@@ -9,10 +9,16 @@ export const hnApi = createApi({
       query: () => "topstories.json",
     }),
 
-    getItem: build.query<Item, number>({
+    getStory: build.query<FrontPageItem, number>({
       query: (id) => `item/${id}.json`,
+      transformResponse: (response: Item) => {
+        if (response.type !== "story" && response.type !== "job" && response.type !== "poll") {
+          throw new Error(`item ${response.id} is not a story`);
+        }
+        return response;
+      },
     }),
   }),
 });
 
-export const { useGetTopStoriesQuery, useLazyGetItemQuery } = hnApi;
+export const { useGetTopStoriesQuery, useLazyGetStoryQuery } = hnApi;

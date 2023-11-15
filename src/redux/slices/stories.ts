@@ -1,34 +1,36 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Item } from "../types";
+import { FrontPageItem } from "../types";
 
-interface StoriesState {
-  storyIds: number[];
-  stories: Item[];
-  fetchedStories: number;
+interface Stories {
+  // all story ids that have been fetched
+  fetchedIds: number[];
+  // all stories that have been fetched
+  list: FrontPageItem[];
+  // index of the last topStoryId fetched. used to determine starting point of next fetch batch
+  fetchedIndex: number;
 }
 
-const initialState: StoriesState = {
-  storyIds: [],
-  stories: [],
-  fetchedStories: 0,
+const initialState: Stories = {
+  fetchedIds: [],
+  list: [],
+  fetchedIndex: 0,
 };
 
 const storiesSlice = createSlice({
   name: "stories",
   initialState,
   reducers: {
-    addStory: (state, action: PayloadAction<Item>) => {
-      if (!state.storyIds.includes(action.payload.id)) {
-        state.storyIds.push(action.payload.id);
-        state.stories.push(action.payload);
-        state.fetchedStories = state.stories.length;
-      }
+    addStory: (state, action: PayloadAction<FrontPageItem>) => {
+      const { id } = action.payload;
+      state.fetchedIds.push(id);
+      state.list.push(action.payload);
+      state.fetchedIndex++;
     },
-    addStories: (state, action: PayloadAction<Item[]>) => {
-      const storiesToAdd = action.payload.filter((story) => !state.storyIds.includes(story.id));
-      state.storyIds.push(...storiesToAdd.map((story) => story.id));
-      state.stories.push(...storiesToAdd);
-      state.fetchedStories = state.stories.length;
+
+    addStories: (state, action: PayloadAction<FrontPageItem[]>) => {
+      state.fetchedIds.push(...action.payload.map((story) => story.id));
+      state.list.push(...action.payload);
+      state.fetchedIndex += action.payload.length;
     },
   },
 });

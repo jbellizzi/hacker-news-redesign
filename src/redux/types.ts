@@ -1,7 +1,6 @@
 export interface BaseItem {
   id: number;
   deleted?: boolean;
-  // type: "job" | "story" | "comment" | "poll" | "pollopt";
   by?: string;
   time?: number;
   dead?: boolean;
@@ -45,3 +44,5 @@ export interface PollOpt extends BaseItem {
 }
 
 export type Item = Job | Story | Comment | Poll | PollOpt;
+// "Stories" displayed on the front page can also be jobs or polls.
+export type FrontPageItem = Story | Job | Poll;

@@ -1,36 +1,51 @@
-import { useEffect, useState } from "react";
-import { addStories, useGetTopStoriesQuery, useLazyGetItemQuery } from "../../redux/slices";
-import { Item } from "../../redux/types";
+import { useCallback, useEffect } from "react";
+import { addStories, useGetTopStoriesQuery, useLazyGetStoryQuery } from "../../redux/slices";
+import { FrontPageItem } from "../../redux/types";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 
-interface UseGetLatestStoriesProps {
+interface UseGetTopStoriesProps {
   numberToFetch?: number;
 }
 
-export const useGetLatestStories = ({ numberToFetch = 12 }: UseGetLatestStoriesProps = {}) => {
-  const { data: topStoryIds, isLoading: isTopStoriesQueryLoading } = useGetTopStoriesQuery();
-
-  const [getItem] = useLazyGetItemQuery();
-
+export const useGetTopStories = ({ numberToFetch = 12 }: UseGetTopStoriesProps = {}) => {
   const dispatch = useAppDispatch();
 
-  const [isLatestStoriesLoading, setIsLatestStoriesLoading] = useState<boolean>(false);
+  // get topStoryIds
+  const { data: topStoryIds, isLoading: isLoadingTopStories } = useGetTopStoriesQuery();
 
+  // fetch a list of stories by ids
+  const [getStory, { isLoading: isLoadingStories, isFetching: isFetchingStories }] = useLazyGetStoryQuery();
+
+  const fetchStories = useCallback(
+    async (idsToFetch: number[]) => {
+      // fetch all at once, waiting for all to resolve
+      const results = await Promise.all(idsToFetch.map((id) => getStory(id)));
+      // map data to stories, filter out undefined
+      const stories = results
+        .map((result) => result.data)
+        .filter((story): story is FrontPageItem => story !== undefined);
+
+      // dispatch to stories slice
+      dispatch(addStories(stories));
+    },
+    [getStory, dispatch]
+  );
+
+  const fetchedIndex = useAppSelector((state) => state.stories.fetchedIndex);
+  const stories = useAppSelector((state) => state.stories.list);
+
+  // on initial load, if no stories have been fetched, fetch the first batch
   useEffect(() => {
-    (async () => {
-      if (topStoryIds) {
-        setIsLatestStoriesLoading(true);
-        const results = await Promise.all(topStoryIds?.slice(0, numberToFetch).map((id) => getItem(id)));
-        const items = results.map((result) => result.data).filter((item): item is Item => item !== undefined);
+    if (fetchedIndex === 0 && topStoryIds) {
+      const idsToFetch = topStoryIds.slice(fetchedIndex, numberToFetch);
+      fetchStories(idsToFetch);
+    }
+  }, [fetchStories, fetchedIndex, numberToFetch, topStoryIds]);
 
-        addStories(items);
-        dispatch(addStories(items));
-        setIsLatestStoriesLoading(false);
-      }
-    })();
-  }, [getItem, topStoryIds, numberToFetch, dispatch]);
+  // function to show next batch of stories
+  const fetchMore = useCallback(() => {
+    if (topStoryIds) fetchStories(topStoryIds.slice(fetchedIndex, fetchedIndex + numberToFetch));
+  }, [fetchStories, fetchedIndex, numberToFetch, topStoryIds]);
 
-  const latestStories = useAppSelector((state) => state.stories.stories);
-
-  return { latestStories, isLoading: isTopStoriesQueryLoading || isLatestStoriesLoading };
+  return { stories, fetchMore, isFetching: isFetchingStories, isLoading: isLoadingStories || isLoadingTopStories };
 };

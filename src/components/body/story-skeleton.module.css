@@ -1,0 +1,17 @@
+.item {
+  margin-bottom: 1.625rem;
+}
+.item::marker {
+  color: rgba(0, 0, 0, 0);
+}
+
+.titleLine {
+  width: 500px;
+  height: 1.5rem;
+  margin-bottom: 0.625rem;
+}
+
+.detailLine {
+  width: 300px;
+  height: 0.75rem;
+}
