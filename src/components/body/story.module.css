@@ -1,0 +1,37 @@
+.story {
+  margin-bottom: 1.625rem;
+}
+
+.titleLine {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.625rem;
+}
+
+.title {
+  font-family: "Ubuntu Mono", "Open Sans", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-right: 0.75rem;
+  color: black;
+  text-decoration: none;
+}
+
+.linkContainer {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.625rem;
+  text-decoration: none;
+}
+
+.detailLine {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.625rem;
+}
+
+.saveContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}

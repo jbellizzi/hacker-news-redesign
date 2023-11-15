@@ -1,0 +1,16 @@
+.footer {
+  padding: 1.75rem 90px;
+  text-align: center;
+}
+
+.footerDivider {
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.label {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+}

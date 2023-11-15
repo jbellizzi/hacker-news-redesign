@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&family=Ubuntu+Mono:wght@400;700&display=swap");
+
 :root {
   font-family: "Open Sans", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   /* line-height: 1.5;
@@ -14,6 +16,10 @@
   -webkit-text-size-adjust: 100%;
 
   --primary-color: #fe7139;
+}
+
+body {
+  margin: 0;
 }
 
 /* a {

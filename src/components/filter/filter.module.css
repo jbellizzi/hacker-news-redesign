@@ -1,0 +1,9 @@
+.filter {
+  text-decoration: none;
+  color: black;
+}
+
+.filterSelected {
+  color: var(--primary-color);
+  font-weight: 800;
+}

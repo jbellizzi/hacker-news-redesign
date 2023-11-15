@@ -1,17 +1,19 @@
 import "./App.css";
-import { useGetTopStoriesQuery } from "./redux/slices";
-import { Header, useFilterController } from "./components";
+import { useGetLatestStories } from "./api";
+import { Body, Footer, Header, useFilterController } from "./components";
 
 function App() {
   const filterController = useFilterController();
 
-  const { data, error, isLoading } = useGetTopStoriesQuery();
+  const topStories = useGetLatestStories();
 
-  console.log({ data, error, isLoading });
+  console.log({ topStories });
 
   return (
     <div>
       <Header {...filterController} />
+      <Body items={topStories.latestStories} />
+      <Footer {...filterController} />
     </div>
   );
 }
