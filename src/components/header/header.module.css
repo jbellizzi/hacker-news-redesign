@@ -1,0 +1,48 @@
+.headerContainer {
+  width: 100%;
+}
+
+.headerBorder {
+  height: 4px;
+  background-color: var(--primary-color);
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 45px 90px;
+  font-size: 0.875rem;
+}
+
+.leftHeaderContent {
+  display: flex;
+  align-items: center;
+}
+
+.hnLogo {
+  height: 33px;
+  margin-right: 2.25rem;
+}
+
+.filterSelected {
+  color: var(--primary-color);
+  font-weight: 800;
+}
+
+.nightModeIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.nightModeIconContainer:hover {
+  background-color: #d1d5db;
+}
+
+.nightModeIcon {
+  width: 1rem;
+}
