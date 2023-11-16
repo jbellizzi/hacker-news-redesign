@@ -11,8 +11,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 123px;
-  padding: 45px;
+  height: 118px;
+  padding: 45px 90px 40px;
   font-size: 0.875rem;
 }
 
@@ -24,6 +24,11 @@
 .hnLogo {
   height: 33px;
   margin-right: 2.25rem;
+}
+
+.hidden,
+:global(.bp5-button).hidden {
+  display: none;
 }
 
 .themeButton:focus {

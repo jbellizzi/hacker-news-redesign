@@ -3,6 +3,10 @@
   min-height: calc(100vh - 280px);
 }
 
+.bodyContainer ol {
+  margin-top: 0;
+}
+
 .bodyContainer .listItem::marker {
   font-family: "Ubuntu Mono", "Open Sans", sans-serif;
   color: rgba(0, 0, 0, 0.5);

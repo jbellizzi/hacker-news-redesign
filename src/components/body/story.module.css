@@ -1,5 +1,12 @@
 .story {
-  margin-bottom: 1.625rem;
+  padding: 0.75rem;
+}
+.story:hover {
+  background-color: #edeff2;
+}
+
+:global(.theme-dark) .story:hover {
+  background-color: #252a31;
 }
 
 .titleLine {

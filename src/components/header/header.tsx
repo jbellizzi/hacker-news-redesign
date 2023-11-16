@@ -9,6 +9,7 @@ import { Button } from "@blueprintjs/core";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useCallback } from "react";
 import { toggleTheme } from "../../redux/slices";
+import classNames from "classnames";
 
 export const Header = ({ filter }: FilterController) => {
   const dispatch = useAppDispatch();
@@ -23,12 +24,27 @@ export const Header = ({ filter }: FilterController) => {
       <div className={styles.headerBorder} />
       <div className={styles.headerContent}>
         <div className={styles.leftHeaderContent}>
-          <img src={themeMode === "dark" ? hnLogoDarkMode : hnLogo} alt="Hacker News Logo" className={styles.hnLogo} />
+          <img
+            src={hnLogoDarkMode}
+            alt="Hacker News Logo"
+            className={classNames(styles.hnLogo, { [styles.hidden]: themeMode === "light" })}
+          />
+          <img
+            src={hnLogo}
+            alt="Hacker News Logo"
+            className={classNames(styles.hnLogo, { [styles.hidden]: themeMode === "dark" })}
+          />
           <FilterComponent filter={filter} />
         </div>
         <Button
-          className={styles.themeButton}
-          icon={<img src={themeMode === "dark" ? lightModeIcon : darkModeIcon} className={styles.nightModeIcon} />}
+          className={classNames(styles.themeButton, { [styles.hidden]: themeMode === "light" })}
+          icon={<img src={lightModeIcon} />}
+          minimal={true}
+          onClick={handleToggleTheme}
+        />
+        <Button
+          className={classNames(styles.themeButton, { [styles.hidden]: themeMode === "dark" })}
+          icon={<img src={darkModeIcon} />}
           minimal={true}
           onClick={handleToggleTheme}
         />
