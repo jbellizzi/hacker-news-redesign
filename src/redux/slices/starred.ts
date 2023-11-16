@@ -54,6 +54,7 @@ const starredSlice = createSlice({
       window.localStorage.setItem("hn_starred", JSON.stringify(state.starredIds));
     },
 
+    // add stories to the list of saved stories
     addStarredStories: (state, action: PayloadAction<FrontPageItem[]>) => {
       state.fetchedIds.push(...action.payload.map((story) => story.id));
       state.list.push(...action.payload);
