@@ -9,6 +9,7 @@ import classNames from "classnames";
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
+    // initialize starred storage from localStorage
     dispatch(initializeFromStorage());
   }, [dispatch]);
 
@@ -26,7 +27,10 @@ function App() {
 }
 
 const AppRoot = () => {
+  // shared filter controller shared by top and bottom filters
   const filterController = useFilterController();
+
+  // get theme (dark or light mode)
   const themeMode = useAppSelector((state) => state.theme.mode);
 
   return (

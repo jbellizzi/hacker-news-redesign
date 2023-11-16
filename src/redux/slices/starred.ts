@@ -23,6 +23,7 @@ const starredSlice = createSlice({
   name: "starred",
   initialState,
   reducers: {
+    // initialize starred stories from local storage. this is to simulate calling a users saved stories from a database
     initializeFromStorage: (state) => {
       const starredIds = window.localStorage.getItem("hn_starred");
       if (starredIds) {
@@ -31,7 +32,9 @@ const starredSlice = createSlice({
       state.loadedFromStorage = true;
     },
 
+    // toggle a story's saved status
     toggleStarredStory: (state, action: PayloadAction<number>) => {
+      // if story is already saved, remove it from saved stories
       if (state.starredIds.includes(action.payload)) {
         const index = state.starredIds.indexOf(action.payload);
         state.starredIds = [...state.starredIds.slice(0, index), ...state.starredIds.slice(index + 1)];
@@ -43,7 +46,7 @@ const starredSlice = createSlice({
         ];
         state.list = [...state.list.slice(0, fetchedIdsIndex), ...state.list.slice(fetchedIdsIndex + 1)];
 
-        state.fetchedIndex--;
+        if (state.fetchedIndex > 0) state.fetchedIndex--;
       } else {
         state.starredIds.push(action.payload);
       }

@@ -5,6 +5,8 @@ import styles from "./story-skeleton.module.css";
 
 const SKELETON_LENGTH = 8;
 
+/** ================ Story Skeleton ================
+ * Renders a skeleton of a story item */
 export const StorySkeleton = () => {
   return (
     <ol>

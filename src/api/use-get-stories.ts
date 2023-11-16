@@ -9,10 +9,13 @@ interface UseGetStoriesProps {
   numberToFetch?: number;
 }
 
+/** Use Get Stories
+ * Custom hook to fetch stories from the hacker news api */
 export const useGetStories = ({ filter, numberToFetch = 12 }: UseGetStoriesProps) => {
   const dispatch = useAppDispatch();
 
-  // get topStoryIds
+  // get topStoryIds, skipping if filter is not on latest.
+  // this will return up to 500 story ids
   const { data: topStoryIds } = useGetTopStoriesQuery(undefined, {
     skip: filter !== "latest",
   });
