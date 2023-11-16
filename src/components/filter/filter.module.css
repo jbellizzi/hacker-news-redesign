@@ -9,7 +9,8 @@
   color: white;
 }
 
-.filter:hover {
+.filter:hover,
+:global(.theme-dark) .filter:hover {
   color: var(--primary-color);
 }
 
@@ -19,7 +20,8 @@
 
 .filterSelected,
 :global(.theme-dark) .filterSelected,
-.filterSelected:hover {
+.filterSelected:hover,
+:global(.theme-dark) .filterSelected:hover {
   color: var(--primary-color);
   font-weight: 800;
 }

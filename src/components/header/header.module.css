@@ -11,7 +11,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 45px 90px;
+  height: 123px;
+  padding: 45px;
   font-size: 0.875rem;
 }
 

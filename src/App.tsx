@@ -1,9 +1,10 @@
 import { Navigate, RouterProvider, Outlet, createHashRouter, createRoutesFromElements, Route } from "react-router-dom";
-import "./App.css";
+import styles from "./App.module.css";
 import { Error404, Footer, Header, LatestStories, StarredStories, useFilterController } from "./components";
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { useEffect } from "react";
 import { initializeFromStorage } from "./redux/slices";
+import classNames from "classnames";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -29,7 +30,12 @@ const AppRoot = () => {
   const themeMode = useAppSelector((state) => state.theme.mode);
 
   return (
-    <div className={`theme-${themeMode}`}>
+    <div
+      className={classNames(styles.app, `theme-${themeMode}`, {
+        [styles.themeDark]: themeMode === "dark",
+        ["bp5-dark"]: themeMode === "dark",
+      })}
+    >
       <Header {...filterController} />
       <Outlet />
       <Footer {...filterController} />

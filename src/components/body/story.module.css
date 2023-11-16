@@ -23,7 +23,8 @@
   outline: none;
 }
 
-:global(.theme-dark) .title {
+:global(.theme-dark) .title,
+:global(.theme-dark) .title:hover {
   color: white;
 }
 

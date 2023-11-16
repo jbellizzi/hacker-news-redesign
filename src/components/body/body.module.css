@@ -1,5 +1,6 @@
 .bodyContainer {
   margin: 0 90px;
+  min-height: calc(100vh - 280px);
 }
 
 .bodyContainer .listItem::marker {
@@ -12,7 +13,8 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-:global(.bp5-button:not([class*="bp5-intent-"])).showMoreButton {
+:global(.bp5-button:not([class*="bp5-intent-"])).showMoreButton,
+:global(.bp5-dark .bp5-button:not([class*="bp5-intent-"])).showMoreButton {
   margin-left: 2.25rem;
   padding: 0.5rem 0.875rem;
   min-width: 104px;

@@ -1,4 +1,8 @@
-.theme-dark {
+.app {
+  min-height: 100vh;
+}
+
+.themeDark {
   background-color: #1e2025;
   color: white;
 }
