@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef } from "react";
-import { Filter } from "../../components";
-import { addStarredStories, addStories, useGetTopStoriesQuery, useLazyGetStoryQuery } from "../../redux/slices";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { FrontPageItem } from "../../redux/types";
+import { Filter } from "../components";
+import { addStarredStories, addStories, useGetTopStoriesQuery, useLazyGetStoryQuery } from "../redux/slices";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { FrontPageItem } from "../redux/types";
 
 interface UseGetStoriesProps {
   filter: Filter;

@@ -1,1 +1,1 @@
-export * from "./hooks";
+export * from "./use-get-stories";
