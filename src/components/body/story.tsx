@@ -55,7 +55,14 @@ export const StoryComponent = ({ story, toggleStarredStory }: StoryProps) => {
         )}{" "}
         {fromNow} |&nbsp;
         {/* comments for story or poll item */}
-        {(isStory || isPoll) && <>{story.descendants} comments |&nbsp;</>}
+        {(isStory || isPoll) && (
+          <>
+            <a className={styles.comment} href={`https://news.ycombinator.com/item?id=${id}`}>
+              {story.descendants} comments
+            </a>
+            &nbsp;|&nbsp;
+          </>
+        )}
         <div className={styles.saveContainer} onClick={handleStarStory}>
           <img
             className={classNames({ [styles.emptyStarIcon]: !starred, [styles.filledStarIcon]: starred })}

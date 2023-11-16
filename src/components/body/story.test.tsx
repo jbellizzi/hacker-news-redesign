@@ -80,7 +80,8 @@ describe("StoryComponent", () => {
     expect(title.getAttribute("href")).toEqual("https://www.marginalia.nu/log/19-website-discoverability-crisis/");
 
     expect(screen.getByText("marginalia.nu", { exact: false })).toBeTruthy();
-    expect(screen.getByText("181 points by ggpsv 4 hours ago | 73 comments", { exact: false })).toBeTruthy();
+    expect(screen.getByText("181 points by ggpsv 4 hours ago | ", { exact: false })).toBeTruthy();
+    expect(screen.getByText("73 comments", { exact: false })).toBeTruthy();
 
     expect(screen.getByAltText("save-empty")).toBeTruthy();
     expect(screen.getByText("save")).toBeTruthy();
@@ -113,7 +114,8 @@ describe("StoryComponent", () => {
     expect(title).toBeTruthy();
     expect(title.getAttribute("href")).toEqual(`https://news.ycombinator.com/item?id=${mockPoll.id}`);
 
-    expect(screen.getByText("2423 points by GreekOphion 4 hours ago | 570 comments", { exact: false })).toBeTruthy();
+    expect(screen.getByText("2423 points by GreekOphion 4 hours ago | ", { exact: false })).toBeTruthy();
+    expect(screen.getByText("570 comments", { exact: false })).toBeTruthy();
 
     expect(screen.getByAltText("save-empty")).toBeTruthy();
     expect(screen.getByText("save")).toBeTruthy();
