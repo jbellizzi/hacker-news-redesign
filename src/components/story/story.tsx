@@ -37,7 +37,7 @@ export const StoryComponent = ({ story, toggleStarredStory }: StoryProps) => {
   };
 
   return (
-    <div className={styles.story}>
+    <div data-id="story" className={styles.story}>
       <div className={styles.titleLine}>
         <>
           {/* title */}
