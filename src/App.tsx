@@ -3,14 +3,14 @@ import styles from "./App.module.css";
 import { Error404, Footer, Header, LatestStories, StarredStories, useFilterController } from "./components";
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { useEffect } from "react";
-import { initializeFromStorage } from "./redux/slices";
+import { initializeStarsFromStorage } from "./redux/slices";
 import classNames from "classnames";
 
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     // initialize starred storage from localStorage
-    dispatch(initializeFromStorage());
+    dispatch(initializeStarsFromStorage());
   }, [dispatch]);
 
   const router = createHashRouter(

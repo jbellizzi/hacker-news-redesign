@@ -24,7 +24,7 @@ const starredSlice = createSlice({
   initialState,
   reducers: {
     // initialize starred stories from local storage. this is to simulate calling a users saved stories from a database
-    initializeFromStorage: (state) => {
+    initializeStarsFromStorage: (state) => {
       const starredIds = window.localStorage.getItem("hn_starred");
       if (starredIds) {
         state.starredIds = JSON.parse(starredIds);
@@ -64,5 +64,5 @@ const starredSlice = createSlice({
   },
 });
 
-export const { initializeFromStorage, toggleStarredStory, addStarredStories } = starredSlice.actions;
+export const { initializeStarsFromStorage, toggleStarredStory, addStarredStories } = starredSlice.actions;
 export const { reducer: starredReducer } = starredSlice;

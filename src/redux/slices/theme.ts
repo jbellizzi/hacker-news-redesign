@@ -4,8 +4,10 @@ interface Theme {
   mode: "light" | "dark";
 }
 
+const storedTheme = window.localStorage.getItem("hn_theme");
+
 const initialState: Theme = {
-  mode: "light",
+  mode: storedTheme === "dark" ? "dark" : "light",
 };
 
 const themeSlice = createSlice({
@@ -15,6 +17,7 @@ const themeSlice = createSlice({
     // toggle between light and dark mode
     toggleTheme: (state) => {
       state.mode = state.mode === "light" ? "dark" : "light";
+      window.localStorage.setItem("hn_theme", state.mode);
     },
   },
 });
